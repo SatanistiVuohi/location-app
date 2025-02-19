@@ -1,12 +1,38 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Button } from 'react-native-paper';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  function Locations({navigation}){
+    return(
+      <View>
+      <Button onPress={()=> navigation.navigate('AddLocation')} >
+      <Text>Add Location</Text>
+      </Button>
+      
+      <Button onPress={()=> navigation.navigate('Map')} >
+      <Text>Map</Text>
+      </Button>
+
+      </View>
+  )
+}
+  function AddLocation(){return(<Text>Add Locations</Text>)}
+  function Map(){return(<Text>Map</Text>)}
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name='Locations' component={Locations} />
+      <Stack.Screen name='AddLocation' component={AddLocation} />
+      <Stack.Screen name='Map' component={Map} />
+    </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
