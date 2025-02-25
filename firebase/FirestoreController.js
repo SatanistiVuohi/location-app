@@ -15,11 +15,10 @@ export function useFireLoc() {
             }));
         });
     }, [])
-
     return locations;
 }
 
-export function addLocation(name, description, rating){
-    addDoc( collection(db, LOC_REF), {name, description, rating})
-    .catch(error => console.log(error.message));
+export function addLocation(name, description, rating) {
+    addDoc(collection(db, LOC_REF), { name, description, rating })
+        .catch(error => console.log(error.message));
 }

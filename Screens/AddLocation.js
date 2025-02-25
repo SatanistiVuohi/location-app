@@ -1,24 +1,23 @@
-import { useState } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Button, TextInput } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
-import { addLocation, useFireLoc } from "../firebase/FirestoreController";
-
+import { useState } from "react";
+import { TouchableOpacity, View } from "react-native";
+import { Button, TextInput } from "react-native-paper";
+import { addLocation } from "../firebase/FirestoreController";
+import { styles } from "../Styles/Styles";
 
 export default function AddLocation({ navigation }) {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [rating, setRating] = useState(0);
-    
+
     const handleLocation = () => {
         addLocation(name, description, rating)
         setName('');
         setDescription(''),
-        setRating(0);
+            setRating(0);
         navigation.goBack();
         console.log("New location: ", { name, description, rating });
-        
     }
 
     return (
@@ -48,25 +47,7 @@ export default function AddLocation({ navigation }) {
                     </TouchableOpacity>
                 ))}
             </View>
-
-            <Button mode='contained' onPress={handleLocation}>Add new location</Button>
-
+            <Button mode='contained' onPress={handleLocation} style={styles.button} >Add new location</Button>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-    },
-    input: {
-        marginBottom: 10,
-    },
-    ratingBox: {
-        flexDirection: "row",
-        padding: 10,
-        marginBottom: 20,
-        justifyContent: "center",
-    }
-})

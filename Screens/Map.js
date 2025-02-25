@@ -1,17 +1,14 @@
 import { useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import MapView  from 'react-native-maps';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useFireLoc } from '../firebase/FirestoreController';
+import { View } from 'react-native';
+import MapView from 'react-native-maps';
+import { styles } from '../Styles/Styles';
 
 export default function Map() {
   const [loc, setLoc] = useState(null);
   const route = useRoute();
-  const locationName = route.params?.location || null;
-const locations = useFireLoc();
-  
+  const locationName = route.params?.location || 'Map';
 
   useEffect(() => {
     async function getLocation() {
@@ -31,13 +28,9 @@ const locations = useFireLoc();
       } else {
         console.log('No location name passed.');
       }
-      
     }
     getLocation();
   }, [locationName]);
-
-  console.log('Location name:', locationName);
-
 
   return (
     <View style={styles.container}>
@@ -50,20 +43,8 @@ const locations = useFireLoc();
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
-        
         />
       )}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  map: {
-    flex: 1,
-
-  },
-});
