@@ -22,16 +22,17 @@ export default function Locations({ navigation }) {
                 {Array.from({ length: 5 }).map((_, index) => (
                   <MaterialIcons
                     key={index}
-                    name={index < loc.rating ? "star" : "star-border"}
+                    name={index < loc.rating ? 'star' : 'star-border'}
                     size={20}
-                    color="gold"
+                    color='gold'
                   />
                 ))}
               </ScrollView>
             </>
           )}
-          onPress={() => navigation.navigate("Map", { location: loc.name })}
-          right={(props) => <List.Icon {...props} icon="map-marker" color="red" />}
+          
+          onPress={() => navigation.navigate('Map', { location: loc.name })}
+          right={(props) => <List.Icon {...props} icon='map-marker' color='red' />}
         />
       ))}
         </ScrollView>
